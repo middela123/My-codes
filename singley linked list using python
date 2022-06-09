@@ -1,0 +1,148 @@
+class node:
+    def _init_(self,data):
+        self.data=data
+        self.next=None
+        
+class linked_list:
+    def _init_(self):
+        self.head=None
+        
+    def  insert_at_begining(self,data):
+        new_node=node(data)
+        new_node.next=self.head
+        self.head=new_node
+    def insert_at_end(self,data):
+        new_node=node(data)
+        temp=self.head
+        if temp==None:
+            new_node.next=temp
+            self.head=new_node
+        else:
+            temp=self.head
+            while temp.next != None:
+                temp=temp.next
+            new_node.next=temp.next
+            temp.next=new_node
+                    
+    def insert_after(self,data,new_data):
+        temp=self.head
+        if temp==None:
+            print('List is  empty insertion is impossible after ',data)
+        else:
+            temp=self.head
+            while temp.data !=data:
+                temp=temp.next
+            new_node=node(new_data)
+            new_node.next=temp.next
+            temp.next=new_node
+            
+            
+    def insert_before(self,data,new_data):
+        temp=self.head
+        if temp ==None:
+            print('List is  empty insertion is impossible before ',data)
+        elif temp.data==data:
+            new_node=node(new_data)
+            new_node.next=temp
+            self.head=new_node
+             
+        else:
+            temp=self.head
+            while temp.next.data==data:
+                new_node=node(new_data)
+                new_node.next=temp.next
+                temp.next=new_node
+        
+    def display(self):
+        temp=self.head
+        if self.head==None:
+            print('Linked list is empty')
+        else:
+            temp=self.head
+            while temp:
+                print(temp.data,end='-->')
+                temp=temp.next
+            print('None')
+    
+    def delete_at_begining(self):
+        temp=self.head
+        if temp==None:
+            print("Deleteion is not possible")
+        else:
+                temp=self.head
+                self.head=temp.next
+                
+    def delete_at_end(self):
+        temp=self.head
+        if temp==None:
+            print("Deleteion is not possible")
+        else:
+                temp=self.head
+                while temp.next.next !=  None:
+                    temp=temp.next
+                temp.next=None 
+                
+    def delete_after(self,data):
+        temp=self.head
+        if temp==None:
+            print("Deleteion is not possible after",data)
+        else:
+                temp=self.head
+                while temp.data != data:
+                    temp=temp.next
+                temp.next=temp.next.next
+    
+    def delete_before(self,data):
+        temp=self.head
+        if temp==None:
+            print("Deleteion is not possible before",data)
+        elif temp.next is None:
+            temp.next=self.head
+        else:
+            temp=self.head
+            while temp.next.next.data !=data:
+                temp=temp.next
+            temp.next=temp.next.next
+                
+ll=linked_list()   
+
+while True:
+    print('Menu'.center(20,'*'))
+    print('1.INSERT','2.DELETE','3.DISPLAY',sep='\n')
+    option=int(input('Select an option:'))
+    if option==1:
+        print('1.insert at begining','2.insert at end','3.insert after','4.insert before',sep='\n')
+        d_ata=int(input('select an option:'))
+        if d_ata==1:
+            data=int(input('Enter data to be inserted at begining:'))
+            ll.insert_at_begining(data)
+        elif d_ata==2:
+            data=int(input('Enter data to be inserted at end:'))
+            ll.insert_at_end(data)
+        elif d_ata==3:
+            data=int(input('Enter data to be inserted after:'))
+            new_data=int(input('enter the data to be inserted:'))
+            ll.insert_after(data,new_data)
+        elif d_ata==4:
+            data=int(input('Enter data to be inserted before:'))
+            new_data=int(input('enter the data to be inserted:'))
+            ll.insert_before(data,new_data)
+            
+    elif option==2:
+        print('1.delete at begining','2.delete at end','3.delete after','4.delete before',sep='\n')
+        d_ata=int(input('select an option:'))
+        if d_ata==1:
+            ll.delete_at_begining()
+        elif d_ata==2:
+            ll.delete_at_end()
+        elif d_ata==3:
+            data=int(input('Enter data to be deleted after:'))
+            ll.delete_after(data)
+        elif d_ata==4:
+            data=int(input('Enter data to be deleted before:'))
+            ll.delete_before(data)
+    elif option==3:
+        ll.display()
+
+    repeat=input('Do You Want to reapeat Yes/No:')
+    if repeat.lower() == 'no': break
