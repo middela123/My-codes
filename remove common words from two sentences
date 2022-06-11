@@ -1,0 +1,20 @@
+l=input()
+k=input()
+s=[]
+t=[]
+m=[i for i in l.split(" ")]
+n=[i for i in k.split(" ")]
+for i in m:
+    if i in n:
+        continue
+    else:
+        s.append(i)
+for i in n:
+    if i in m:
+        continue
+    else:
+        t.append(i)
+v=' '.join(s)
+u=' '.join(t)
+print(u)
+print(v)
