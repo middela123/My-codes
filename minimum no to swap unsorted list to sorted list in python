@@ -1,0 +1,24 @@
+def calculate_times(unsorted_list):
+    count=0
+    co=0
+    sorted_list=sorted(unsorted_list)
+    unsorted_list1=unsorted_list
+    for i in range(len(unsorted_list)-1):
+        unsorted_list=unsorted_list[-1:]+unsorted_list[:-1]
+        count+=1
+        if(unsorted_list==sorted_list):
+            break
+    for i in range(len(unsorted_list1)-1):
+        unsorted_list1=unsorted_list1[1:]+[unsorted_list1[0]]
+        co+=1
+        if(unsorted_list1==sorted_list):
+            break
+    if count>co:
+        return co
+    else:
+        return count
+    
+unsorted_list=[i for i in map(int,input().split())]
+d=calculate_times(unsorted_list)
+print(d)
+    
