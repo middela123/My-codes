@@ -1,0 +1,451 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None 
+        
+class SingleyLinkdedList:
+    def __init__(self):
+        self.head=None 
+    
+    def print(self):
+        temp=self.head
+        if(temp==None):
+            print("Linked List is empty")
+        else:
+            while temp!=None:
+                print(temp.data,end="-->")
+                temp=temp.next
+            print(None)
+            
+    def Length(self):
+        temp=self.head
+        count=0 
+        while temp!=None:
+            count+=1 
+            temp=temp.next
+        return count
+        
+    def MiddleOfList(self):
+        temp=self.head
+        cnt=ls.Length()
+        if(cnt%2==0 and cnt>=3):
+            count=1
+            l=cnt//2 
+            while count!=l:
+                count+=1 
+                temp=temp.next
+            print(temp.data,temp.next.data,sep=" ")
+        elif(cnt%2!=0 and cnt>=3):
+            count=1
+            l=(cnt//2)+1
+            while count!=l:
+                count+=1 
+                temp=temp.next
+            print(temp.data)
+        else:
+            print("Not Possible")
+            
+    def MinandMax(self):
+        Min=1000
+        Max=-1
+        temp=self.head
+        while temp!=None:
+            Min=min(Min,temp.data)
+            Max=max(Max,temp.data)
+            temp=temp.next
+        return Min,Max
+        
+        
+    def InsertAtBegining(self,data):
+        node=Node(data)
+        temp=self.head
+        if(temp==None):
+            self.head=node 
+        else:
+            node.next=temp
+            self.head=node
+            
+            
+    def InsertAtEnd(self,data):
+        node=Node(data)
+        temp=self.head
+        if(temp==None):
+            self.head=node 
+        else:
+            while temp.next!=None:
+                temp=temp.next
+            temp.next=node
+    
+    
+    def InsertAfterIndex(self,index,data):
+        node=Node(data)
+        temp=self.head
+        count=0 
+        if(temp==None):
+            print("Insertion Is Impossible")
+        else:
+            while count!=index:
+                count+=1 
+                temp=temp.next
+            node.next=temp.next
+            temp.next=node
+            
+            
+    def InsertBeforeIndex(self,index,data):
+        node=Node(data)
+        temp=self.head
+        count=0 
+        if(temp==None):
+            print("Insertion Is Impossible")
+        elif(index==0):
+            node.next=temp
+            self.head=node
+        else:
+            while count+1!=index:
+                count+=1 
+                temp=temp.next
+            node.next=temp.next
+            temp.next=node
+    
+    def InsertAfterData(self,data,data1):
+        node=Node(data1)
+        temp=self.head
+        if temp==None:
+            print("Empty")
+        else:
+            while temp!=None:
+                if(temp.data==data):
+                    node.next=temp.next
+                    temp.next=node 
+                    break
+                else:
+                    temp=temp.next
+            if(temp==None):
+                print("enter valid data")
+                
+    
+    def InsertBeforeData(self,data,data1):
+        node=Node(data1)
+        temp=self.head
+        if temp==None:
+            print("Empty")
+        elif temp.data==data:
+            node.next=self.head
+            self.head=node
+        else:
+            while temp!=None:
+                if(temp.next.data==data):
+                    node.next=temp.next
+                    temp.next=node 
+                    break
+                else:
+                    temp=temp.next
+            if(temp==None):
+                print("enter valid data")
+                
+    def InsertAtIndex(self,index,data):
+        node=Node(data)
+        count=0 
+        temp=self.head
+        if(temp==None):
+            print("Insertion is Impossible")
+        else:
+            while count+1!=index:
+                count+=1 
+                temp=temp.next
+            node.next=temp.next
+            temp.next=node
+                
+    def DeleteAtBegining(self):
+        temp=self.head
+        if temp==None:
+            print("deletion is impossible")
+        else:
+            self.head=temp.next
+            
+    def DeleteAtEnd(self):
+        temp=self.head
+        if(temp==None):
+            print("deletion is impossible")
+        elif(temp.next==None):
+            self.head=None
+        else:
+            while temp.next.next!=None:
+                temp=temp.next
+            temp.next=None
+            
+    def DeleteAfterIndex(self,index):
+        count=0 
+        temp=self.head
+        cnt=ls.Length()
+        if cnt<index or index==cnt:
+            print("Deletion is Impossible")
+        elif(temp==None):
+            print("Empty")
+        elif(index==0):
+            temp.next=temp.next.next
+        else:
+            while count!=index:
+                count+=1
+                temp=temp.next
+            if(temp.next.next):
+                temp.next=temp.next.next
+            else:
+                temp.next=None
+    
+    def DeleteBeforeIndex(self,index):
+        count=0 
+        temp=self.head
+        cnt=ls.Length()
+        if cnt<index or index==0:
+            print("Deletion is Impossible")
+        elif(temp==None):
+            print("Empty")
+        elif(index==1):
+            ls.DeleteAtBegining()
+        else:
+            while count+2!=index:
+                count+=1
+                temp=temp.next
+            temp.next=temp.next.next
+        
+    def DeleteAfterData(self,data):
+        temp=self.head
+        if temp==None:
+            print("Empty")
+        elif(temp.data==data and ls.Length()==1):
+            print("Impossible to delete")
+        else:
+            while temp.data!=data:
+                temp=temp.next
+            if(temp.next.next):
+                temp.next=temp.next.next
+            elif(temp.next):
+                temp.next=None
+    
+    def DeleteBeforeData(self,data):
+        temp=self.head
+        temp1=self.head
+        if temp==None:
+            print("Empty")
+        elif(temp.data==data or ls.Length()==1):
+            print("Impossible to delete")
+        elif(temp.next.data==data):
+            self.head=temp.next
+        else:
+            while temp.next.data!=data:
+                temp1=temp
+                temp=temp.next
+            temp1.next=temp.next
+            
+    def DeleteAtIndex(self,index):
+        count=0 
+        temp=self.head
+        if(temp==None or index>ls.Length()):
+            print("Deletion is imposssible")
+        elif(index==0):
+            ls.DeleteAtBegining()
+        elif(index==ls.Length()):
+            ls.DeleteAtEnd()
+        else:
+            while count+1!=index:
+                count+=1 
+                temp=temp.next
+            if(temp.next.next):
+                temp.next=temp.next.next
+            elif(temp.next):
+                temp.next=None
+    
+    def DeleteData(self,data):
+        temp=self.head
+        if(temp==None):
+            print("Impossible")
+        elif(temp.data==data):
+            ls.DeleteAtBegining()
+        else:
+            while temp.next.data!=data:
+                temp=temp.next
+            if(temp.next.next):
+                temp.next=temp.next.next
+            elif(temp.next):
+                temp.next=None 
+                
+    def MakeCycleAtIndex(self,index):
+        count=0 
+        temp=self.head
+        if(temp==None):
+            print("Empty")
+        elif(index>ls.Length()):
+            print("give correct index")
+        else:
+            while temp.next!=None:
+                if(count==index):
+                    cyc=temp 
+                count+=1 
+                temp=temp.next
+            temp.next=cyc 
+            
+
+    def MakeCycleAtData(self,data):
+        temp=self.head
+        if(temp==None):
+            print("Empty")
+        else:
+            while temp.next!=None:
+                if(temp.data==data):
+                    cyc=temp 
+                temp=temp.next
+            temp.next=cyc 
+    
+    
+    def removeCycle(self):
+        pass
+    
+    
+    def detectCycle(self):
+        fast=self.head
+        slow=self.head
+        stat=False
+        if(fast==None):
+            print("Empty")
+        else:
+            while fast and fast.next:
+                fast=fast.next.next
+                slow=slow.next
+                if(fast==slow):
+                    return True
+            return False
+            
+    def detectCycleAtData(self):
+        fast=self.head
+        slow=self.head
+        index=0
+        if(fast==None):
+            print("Empty")
+        else:
+            while fast and fast.next:
+                fast=fast.next.next
+                slow=slow.next
+                if(fast==slow):
+                    break 
+            if not fast or not fast.next:
+                return "None"
+            pointer=self.head
+            while pointer.data!=slow.data:
+                index+=1
+                pointer=pointer.next
+                slow=slow.next
+        return slow.data,index
+        
+            
+            
+    def ElementAtIndex(self,index):
+        temp=self.head
+        count=0 
+        if(temp==None):
+            print("Empty")
+        else:
+            while count!=index:
+                count+=1 
+                temp=temp.next
+            return temp.data
+            
+
+    
+    
+    
+    
+ls=SingleyLinkdedList()
+while True:
+    print("Menu".center(20,'*'))
+    print("1.Insert\n2.Delete\n3.Print\n4.Length of LL\n5.Middle Of Linked List\n6.Max and Min of Linked List\n7.Make Cycle at Index\n8.Make Cycle at Data\n9.Detect Cycle\n10.Remove Cycle\n11.Element At Index\n12.Detect Cycle At Data")
+    n=int(input())
+    if(n==1):
+        print("1.Insert At Beginning\n2.Insert At End\n3.Insert After Index\n4.Insert Before Index\n5.Insert After Data\n6.Insert Before Data\n7.Insert At Index")
+        li=int(input())
+        if(li==1):
+            data=int(input())
+            ls.InsertAtBegining(data)
+        elif(li==2):
+            data=int(input())
+            ls.InsertAtEnd(data)
+        elif(li==3):
+            indx=int(input())
+            data=int(input())
+            ls.InsertAfterIndex(indx,data)
+        elif(li==4):
+            indx=int(input())
+            data=int(input())
+            ls.InsertBeforeIndex(indx,data)
+        elif(li==5):
+            data=int(input())
+            data1=int(input())
+            ls.InsertAfterData(data,data1)
+        elif(li==6):
+            data=int(input())
+            data1=int(input())
+            ls.InsertBeforeData(data,data1)
+        elif(li==7):
+            indx=int(input())
+            data=int(input())
+            ls.InsertAtIndex(indx,data)
+        
+    elif(n==2):
+        print("1.Delete At Begining\n2.Delete At End\n3.Delete After Index\n4.Delete Before Index\n5.Delete After Data\n6.Delete Before Data\n7.Delete at Index\n8.Delete data")
+        de=int(input())
+        if(de==1):
+            ls.DeleteAtBegining()
+        elif(de==2):
+            ls.DeleteAtEnd()
+        elif(de==3):
+            indx=int(input())
+            ls.DeleteAfterIndex(indx)
+        elif(de==4):
+            indx=int(input())
+            ls.DeleteBeforeIndex(indx)
+        elif(de==5):
+            data=int(input())
+            ls.DeleteAfterData(data)
+        elif(de==6):
+            data=int(input())
+            ls.DeleteBeforeData(data)
+        elif(de==7):
+            indx=int(input())
+            ls.DeleteAtIndex(indx)
+        elif(de==8):
+            data=int(input())
+            ls.DeleteData(data)
+            
+    elif(n==3):
+        ls.print()
+    elif(n==4):
+        cnt=ls.Length()
+        print(cnt)
+    elif(n==5):
+        ls.MiddleOfList()
+    elif(n==6):
+        Min,Max=ls.MinandMax()
+        print(Min,Max)
+    elif(n==7):
+        index=int(input())
+        ls.MakeCycleAtIndex(index)
+    elif(n==8):
+        data=int(input())
+        ls.MakeCycleAtData(data)
+    elif(n==9):
+        stat=ls.detectCycle()
+        print(stat)
+    elif(n==10):
+        ls.removeCycle()
+    elif(n==11):
+        index=int(input())
+        data=ls.ElementAtIndex(index)
+        print(data)
+    elif(n==12):
+        data,index=ls.detectCycleAtData()
+        print("data=",data,"index=",index,sep="  ")
+    print("Do you want to continue:yes or no")
+    des=input()
+    if(des=="no"):
+        break 
+    
